@@ -1,8 +1,7 @@
-import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { User } from '@prisma/client';
 
-import { AuthResponse, AuthService, CurrentUser, JwtAuthGuard, LoginInput } from '.';
+import { Auth, AuthResponse, AuthService, CurrentUser, LoginInput } from '.';
 
 @Resolver()
 export class AuthResolver {
@@ -14,7 +13,7 @@ export class AuthResolver {
   }
 
   @Query(() => AuthResponse, { name: 'renewToken' })
-  @UseGuards(JwtAuthGuard)
+  @Auth()
   renewToken(@CurrentUser() user: User) {
     return this.authService.renewToken(user);
   }

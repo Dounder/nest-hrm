@@ -4,10 +4,9 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 
 import { PrismaModule } from 'src/prisma';
-import { AuthResolver } from './auth.resolver';
-import { AuthService } from './auth.service';
-import { JwtStrategy } from './strategies/jwt.strategy';
 import { UsersModule } from 'src/users';
+import { AuthResolver } from './auth.resolver';
+import { AuthService, JwtStrategy } from '.';
 
 @Module({
   providers: [AuthResolver, AuthService, JwtStrategy],
