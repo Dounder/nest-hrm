@@ -1,8 +1,8 @@
 export * from './auth.service';
-export * from './auth.resolver';
+export * from './auth.controller';
 export * from './auth.module';
 
-export * from './inputs';
+export * from './dto';
 export * from './types/auth-response.type';
 export * from './strategies/jwt.strategy';
 export * from './interfaces/jwt-payload.interface';

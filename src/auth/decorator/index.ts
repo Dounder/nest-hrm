@@ -1,3 +1,3 @@
-export * from './role-protected.decorator';
-export * from './user.decorator';
-export * from './auth.decorator';
+export { ROLES_META, RoleProtected } from './role-protected.decorator';
+export { CurrentUser } from './user.decorator';
+export { Auth } from './auth.decorator';

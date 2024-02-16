@@ -3,13 +3,13 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 
-import { PrismaModule } from 'src/prisma';
-import { UsersModule } from 'src/users';
-import { AuthResolver } from './auth.resolver';
-import { AuthService, JwtStrategy } from '.';
+import { PrismaModule } from '../prisma';
+import { UsersModule } from '../users';
+import { AuthController, AuthService, JwtStrategy } from '.';
 
 @Module({
-  providers: [AuthResolver, AuthService, JwtStrategy],
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy],
   exports: [PassportModule, JwtModule, JwtStrategy],
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),

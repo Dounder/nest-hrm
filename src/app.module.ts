@@ -19,12 +19,10 @@ import { AuthModule } from './auth/auth.module';
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       path: 'api/v1/graphql',
-      // context: ({ req }) => {
-      //   const token = req.headers.authorization?.replace(/[Bb]earer\s?/g, '');
-      //   if (!token) throw Error('Token needed');
-      //   const payload = jwtService.decode(token);
-      //   if (!payload) throw Error('Token not valid');
-      // },
+      context: ({ req }) => {
+        const token = req.headers.authorization?.replace(/[Bb]earer\s?/g, '');
+        if (!token) throw Error('Token needed');
+      },
       formatError: (error: any) => {
         const { message, path, extensions } = error;
         const formattedError = {

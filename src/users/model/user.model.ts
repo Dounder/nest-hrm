@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Role } from '@prisma/client';
-import { BaseModel } from 'src/common';
+import { BaseModel } from '../../common';
 
 @ObjectType()
 export class User extends BaseModel {

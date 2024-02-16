@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
-import { PrismaService } from 'src/prisma';
+import { PrismaService } from '../prisma';
 import { CreateUserInput, UpdateUserInput } from './inputs';
 
 interface FindOneProps {

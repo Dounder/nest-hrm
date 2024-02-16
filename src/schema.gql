@@ -10,7 +10,7 @@ type User {
   deleted: Boolean!
   username: String!
   email: String!
-  roles: [UserRole!]!
+  roles: [Role!]!
   lastUpdatedBy: User
 }
 
@@ -20,7 +20,7 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 """Roles of the user"""
-enum UserRole {
+enum Role {
   ADMIN
   USER
   GUEST
@@ -28,40 +28,28 @@ enum UserRole {
   EMPLOYEE
 }
 
-type AuthResponse {
-  token: String!
-  user: User!
-}
-
 type Query {
   users: [User!]!
   user(id: Int!): User!
-  renewToken: AuthResponse!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
-  login(loginInput: LoginInput!): AuthResponse!
 }
 
 input CreateUserInput {
   username: String!
   email: String!
   password: String!
-  roles: [UserRole!]! = [USER]
+  roles: [Role!]! = [USER]
 }
 
 input UpdateUserInput {
   username: String
   email: String
   password: String
-  roles: [UserRole!] = [USER]
+  roles: [Role!] = [USER]
   id: Int!
-}
-
-input LoginInput {
-  username: String!
-  password: String!
 }

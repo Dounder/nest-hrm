@@ -1,10 +1,11 @@
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from 'src/prisma';
-import { AuthResponse, LoginInput } from './';
 import { User } from '@prisma/client';
+
+import { PrismaService } from '../prisma';
+import { type AuthResponse } from './types';
+import { LoginDto } from './dto';
 
 @Injectable()
 export class AuthService {
@@ -15,8 +16,8 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async login(loginInput: LoginInput): Promise<AuthResponse> {
-    const { username, password } = loginInput;
+  async login(loginDto: LoginDto): Promise<AuthResponse> {
+    const { username, password } = loginDto;
     const user = await this.prisma.user.findFirst({ where: { username } });
 
     if (!user) {
